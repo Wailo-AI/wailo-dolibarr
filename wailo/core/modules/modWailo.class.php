@@ -54,7 +54,7 @@ class modWailo extends DolibarrModules
         $this->editor_name = 'Wailo';
         $this->editor_url = 'https://wailo.ai';
         $this->editor_squarred_logo = 'wailo_logo.png@wailo';
-        $this->version = '0.3.0';
+        $this->version = '1.0.0';
         $this->const_name = 'MAIN_MODULE_' . strtoupper($this->name);
         $this->picto = 'wailo@wailo';
 

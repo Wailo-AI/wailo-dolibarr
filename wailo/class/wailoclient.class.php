@@ -33,6 +33,13 @@ class WailoRateLimitedException extends RuntimeException
 }
 
 /**
+ * Wailo answered 401: the API key was revoked or is no longer valid. The pass stops at once (nothing is quarantined).
+ */
+class WailoKeyRefusedException extends RuntimeException
+{
+}
+
+/**
  * Minimal client of the Wailo public API (v1).
  */
 class WailoClient
@@ -117,6 +124,7 @@ class WailoClient
      * @param array<string,string> $headers Extra headers (If-Match, Idempotency-Key)
      * @return array{status:int,headers:array<string,string>,json:mixed}
      * @throws RuntimeException On network error or repeated 429
+     * @throws WailoKeyRefusedException On 401 (key revoked or invalid)
      */
     public function request($method, $path, $body = null, array $headers = array())
     {
@@ -140,6 +148,9 @@ class WailoClient
                         (string) ($e['code'] ?? '?'),
                         (string) ($e['request_id'] ?? ($r['headers']['wailo-request-id'] ?? '?')),
                     ));
+                }
+                if ($r['status'] === 401) {
+                    throw new WailoKeyRefusedException('401 unauthenticated: the Wailo API key was revoked or is no longer valid');
                 }
                 return $r;
             }

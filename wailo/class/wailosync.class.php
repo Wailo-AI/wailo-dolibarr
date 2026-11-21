@@ -65,6 +65,7 @@ class WailoSync
     public const RESULT_DEFERRED = 'deferred';
     public const RESULT_LOCKED = 'locked';
     public const RESULT_NOKEY = 'nokey';
+    public const RESULT_KEYREFUSED = 'keyrefused';
 
     /** @var DoliDB */
     public $db;
@@ -139,7 +140,7 @@ class WailoSync
             $this->error = 'Waiting for a human confirmation on the Wailo setup page';
             return 2;
         }
-        return in_array($result, array(self::RESULT_ERROR, self::RESULT_DEFERRED), true) ? 1 : 0;
+        return in_array($result, array(self::RESULT_ERROR, self::RESULT_DEFERRED, self::RESULT_KEYREFUSED), true) ? 1 : 0;
     }
 
     /**
@@ -226,6 +227,11 @@ class WailoSync
             }
         } catch (WailoRateLimitedException $e) {
             $result = self::RESULT_DEFERRED;
+        } catch (WailoKeyRefusedException $e) {
+            $result = self::RESULT_KEYREFUSED;
+            $this->stats['errors']++;
+            $this->error = $e->getMessage();
+            $this->log('error', 'KeyRefused', array());
         } catch (Throwable $e) {
             $result = self::RESULT_ERROR;
             $this->stats['errors']++;
@@ -261,6 +267,10 @@ class WailoSync
         unset($key);
         try {
             $r = $client->request('GET', '/me');
+        } catch (WailoKeyRefusedException $e) {
+            $out['status'] = 401;
+            $out['code'] = 'unauthenticated';
+            return $out;
         } catch (Throwable $e) {
             $out['code'] = 'network';
             $this->log('error', 'Error', array(dol_trunc($e->getMessage(), 300)));

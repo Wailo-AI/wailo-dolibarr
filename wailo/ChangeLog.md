@@ -1,5 +1,12 @@
 # CHANGELOG WAILO FOR [DOLIBARR ERP & CRM](https://www.dolibarr.org)
 
+## 1.0.0
+
+First stable version. A key revoked or no longer valid (Wailo answers 401) now stops the synchronisation at once with a
+clear message on the setup page and in the journal: create a new key in the Wailo Enterprise space ("API access"
+screen) and paste it. Nothing is changed in Dolibarr and no contact is put aside. Tested on Dolibarr 20.0.4 and 24.0.3,
+and against the production API.
+
 ## 0.3.0
 
 A contact removed in Wailo keeps its link asleep: if it comes back in Wailo, the same Dolibarr contact is made

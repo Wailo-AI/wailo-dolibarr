@@ -128,3 +128,6 @@ WailoLogAsleepLinkForgotten = Wailo %s, retiré de Wailo : son contact Dolibarr 
 WailoLogW2DPaired = Import initial : contact Dolibarr %s apparié à Wailo %s, champs vides remplis : %s
 WailoLogQuarantine = Quarantaine %s : %s
 WailoLogD2WRefused = Dolibarr vers Wailo : refusé (%s)
+WailoSyncResult_keyrefused = Wailo a refusé la clé d'API : elle a été révoquée ou n'est plus valide. Créez une nouvelle clé dans l'espace Entreprise de Wailo (écran « Accès API ») et collez-la ci-dessus. Rien n'a été modifié.
+WailoKeyRevoked = Wailo a refusé la clé d'API : elle a été révoquée ou n'est plus valide. Créez une nouvelle clé dans l'espace Entreprise de Wailo (écran « Accès API ») et collez-la ci-dessus.
+WailoLogKeyRefused = Wailo a refusé la clé d'API (révoquée ou plus valide) : synchronisation arrêtée, rien n'a été modifié

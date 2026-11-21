@@ -142,6 +142,8 @@ if ($action === 'save') {
         $client->allowSleep = false;
         try {
             $me = $client->request('GET', '/me');
+        } catch (WailoKeyRefusedException $e) {
+            $me = array('status' => 401, 'json' => array('error' => array('code' => 'unauthenticated')));
         } catch (Throwable $e) {
             $me = array('status' => 0, 'json' => null);
         }
@@ -209,7 +211,7 @@ if ($action === 'test') {
             $langs->transnoentitiesnoconv($t['sandbox'] ? 'WailoSandboxYes' : 'WailoSandboxNo')
         ), array(wailoMsg('WailoTestRights', $t['abilities'])), 'mesgs');
     } else {
-        setEventMessages(wailoMsg('WailoTestKo', $t['code']), null, 'errors');
+        setEventMessages($t['code'] === 'unauthenticated' ? wailoMsg('WailoKeyRevoked') : wailoMsg('WailoTestKo', $t['code']), null, 'errors');
     }
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit;
@@ -222,7 +224,7 @@ if ($action === 'syncnow' || $action === 'syncconfirm') {
         $confirmation = array('reason' => GETPOST('confirm_reason', 'aZ09'), 'hash' => GETPOST('confirm_hash', 'alphanohtml'));
     }
     $result = $sync->runPass($user, $confirmation);
-    $style = $result === WailoSync::RESULT_OK ? 'mesgs' : ($result === WailoSync::RESULT_ERROR ? 'errors' : 'warnings');
+    $style = $result === WailoSync::RESULT_OK ? 'mesgs' : (in_array($result, array(WailoSync::RESULT_ERROR, WailoSync::RESULT_KEYREFUSED), true) ? 'errors' : 'warnings');
     setEventMessages(wailoMsg('WailoSyncResult_' . $result), null, $style);
     header('Location: ' . $_SERVER['PHP_SELF']);
     exit;
