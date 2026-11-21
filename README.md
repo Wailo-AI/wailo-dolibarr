@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/wailo-logo.png" alt="Wailo" width="320"></p>
+
 # Wailo for [Dolibarr ERP & CRM](https://www.dolibarr.org)
 
 Official Dolibarr module by [Wailo](https://wailo.ai) (module id 210260). Tested on Dolibarr 20.0 and 24.0.
