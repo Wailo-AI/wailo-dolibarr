@@ -27,6 +27,12 @@ Requires a Wailo account with API access. A trial key (`wlo_test_`) opens a sand
 use it on a test Dolibarr only. On a Dolibarr that holds real contacts, the fictitious contacts would be added to it
 (and real contacts sharing an e-mail or a mobile with a fictitious one would be paired with it).
 
+## Screenshots
+
+![Settings](docs/screenshot-settings.png)
+
+![Synchronisation status](docs/screenshot-status.png)
+
 ## Installation
 
 Go to `Home > Setup > Modules > Deploy external module` and upload `module_wailo-x.y.z.zip`
