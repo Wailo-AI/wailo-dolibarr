@@ -1,0 +1,130 @@
+# Copyright (C) 2026 Wailo <https://wailo.ai>
+# Licence GPL v3 ou ultérieure
+
+#
+# Module
+#
+Module210260Name = Wailo
+Module210260Desc = Synchronisation de vos contacts avec Wailo, dans les deux sens
+WailoModuleDesc = Synchronisation de vos contacts avec Wailo, dans les deux sens
+WailoCronSyncLabel = Synchronisation des contacts Wailo
+WailoCronSyncComment = Une passe : Dolibarr vers Wailo, puis Wailo vers Dolibarr
+
+#
+# Page de réglage
+#
+WailoSetup = Wailo for Dolibarr
+WailoApiKey = Clé d'API Wailo
+WailoKeyStored_test = Une clé d'essai (bac à sable) est enregistrée
+WailoKeyStored_live = Une clé est enregistrée
+WailoKeyStored_unknown = Une clé est enregistrée
+WailoKeyNone = Aucune clé enregistrée
+WailoApiUrl = Adresse de l'API Wailo
+WailoDirectory = Répertoire Wailo des contacts créés dans Dolibarr
+WailoDirectoryHelp = Nom d'un répertoire existant de votre entreprise Wailo (par exemple Clients).
+WailoDeleteKey = Effacer la clé
+WailoKeyDeleted = Clé effacée : la synchronisation est arrêtée.
+WailoErrorUrl = L'adresse de l'API doit commencer par https://
+WailoErrorDirectory = Le nom du répertoire est obligatoire (120 caractères au plus).
+WailoErrorKeyShape = Ce n'est pas une clé d'API Wailo (attendu : nombre|wlo_test_... ou nombre|wlo_live_...).
+WailoErrorKeyRefused = Wailo a refusé la clé ou ne répond pas (%s) : rien n'a été enregistré.
+WailoKeyChangedReset = Nouvelle entreprise ou bac à sable : les liens avec la précédente sont oubliés. Le premier envoi des contacts de Dolibarr vers Wailo vous demandera confirmation.
+WailoSyncTitle = Synchronisation
+WailoTestConnection = Tester la connexion
+WailoSyncNow = Synchroniser maintenant
+WailoTestOk = Connexion OK : entreprise « %s », état %s, %s contacts, %s
+WailoTestRights = Droits de la clé : %s
+WailoTestKo = Connexion impossible : %s
+WailoSandboxYes = bac à sable (contacts fictifs)
+WailoSandboxNo = vrais contacts
+WailoSyncResult_ok = Synchronisation faite.
+WailoSyncResult_waiting = Synchronisation faite en partie : une confirmation est nécessaire (voir plus bas).
+WailoSyncResult_error = Synchronisation arrêtée sur une erreur (voir le journal).
+WailoSyncResult_locked = Une synchronisation est déjà en cours : réessayez dans un instant.
+WailoSyncResult_nokey = Aucune clé d'API : rien à faire.
+WailoWaiting_bootstrap = Votre entreprise Wailo a %s contacts : importer plus de 50 contacts demande votre confirmation.
+WailoWaiting_first_push = %s contacts de Dolibarr ne sont pas encore dans Wailo. Vérifiez que ce sont de vrais contacts (pas des contacts d'essai), puis confirmez pour les envoyer dans Wailo.
+WailoWaiting_too_many = %s changements à envoyer dans Wailo : plus de 50 opérations demandent votre confirmation.
+WailoWaiting_deletes = %s contacts ont disparu de Dolibarr d'un coup : plus de 5 suppressions demandent votre confirmation.
+WailoSyncConfirm = Confirmer et synchroniser (%s)
+WailoStatusTitle = État
+WailoLastPass = Dernière passe
+WailoNeverRun = jamais
+WailoToWailo = Dolibarr vers Wailo
+WailoToDolibarr = Wailo vers Dolibarr
+WailoCounters = %s créés, %s modifiés, %s supprimés
+WailoLinkedContacts = Contacts reliés
+WailoBootstrappedAt = Import initial
+WailoCronJob = Tâche planifiée (toutes les 5 minutes)
+WailoCronModuleOff = le module « Travaux planifiés » est désactivé : utilisez le bouton « Synchroniser maintenant » ou activez-le.
+WailoCronLastRun = dernier lancement :
+WailoCronNextRun = prochain :
+WailoCronOpen = ouvrir
+WailoCronHelp = Les travaux planifiés ne tournent que si votre serveur appelle le planificateur de Dolibarr (scripts/cron/cron_run_jobs.php dans la crontab du système, voir Accueil > Configuration > Travaux planifiés).
+WailoJournalTitle = Journal (dernières lignes)
+
+#
+# Journal
+#
+WailoLogWailoHttpError = Wailo %s %s a répondu %s %s (request_id %s)
+WailoLogDeleteLimitReached = Plafond quotidien de suppressions de Wailo atteint : les suppressions reprennent demain
+WailoLogRateLimited = Wailo demande de ralentir : attente de %s s
+WailoLogNoKey = Aucune clé d'API : passe ignorée
+WailoLogInvalidUrl = Adresse de l'API invalide (https:// obligatoire) : passe arrêtée
+WailoLogPassSkippedLocked = Passe ignorée : une autre passe tourne
+WailoLogPassOk = Passe OK : %s contacts reliés
+WailoLogError = Erreur : %s
+WailoLogBootstrapStart = Import initial : entreprise %s, %s contacts, bac à sable %s
+WailoLogBootstrapRead = Import initial : %s contacts lus, %s attendus
+WailoLogBootstrapDone = Import initial terminé : %s contacts reliés
+WailoLogDirectoryNotFound = Répertoire Wailo « %s » introuvable : contacts créés sans répertoire
+WailoLogD2WIgnoredNoName = Dolibarr vers Wailo : contact %s ignoré (ni prénom, ni nom, ni société)
+WailoLogD2WCreated = Dolibarr vers Wailo : créé Wailo %s depuis le contact Dolibarr %s
+WailoLogD2WDuplicateOfLinked = Dolibarr vers Wailo : le contact %s est un doublon d'un contact déjà relié (Dolibarr %s), à fusionner par un humain
+WailoLogD2WDuplicateLinked = Dolibarr vers Wailo : doublon, contact Dolibarr %s relié à Wailo %s
+WailoLogD2WLivecardIgnored = Dolibarr vers Wailo : Wailo %s est une copie de LiveCard (tenue par son propriétaire) : changement Dolibarr ignoré
+WailoLogD2WUpdated = Dolibarr vers Wailo : modifié Wailo %s (%s)
+WailoLogD2WDeleted = Dolibarr vers Wailo : supprimé dans Dolibarr, mis à la corbeille de Wailo : %s
+WailoLogD2WOwnedByMember = Dolibarr vers Wailo : Wailo %s appartient à un membre, à retirer du répertoire par un humain
+WailoLogCursorExpired = Fil des changements de Wailo expiré (410) : nouvel import initial
+WailoLogW2DCreated = Wailo vers Dolibarr : créé le contact Dolibarr %s depuis Wailo %s
+WailoLogW2DUpdated = Wailo vers Dolibarr : modifié le contact Dolibarr %s (%s)
+WailoLogThirdpartyCreated = Tiers créé dans Dolibarr : %s
+WailoLogKeyChangedReset = Clé d'API changée pour une autre entreprise ou le bac à sable : liens oubliés
+WailoLogKeyDeleted = Clé d'API effacée
+
+#
+# 0.2.0
+#
+WailoModuleDescLong = Garde les contacts de Dolibarr et ceux de Wailo identiques, dans les deux sens, toutes les 5 minutes. Nécessite un compte Wailo (offre Entreprise) et une clé d'API.
+WailoSetupIntro = Un contact créé ou modifié d'un côté est recopié de l'autre à chaque passe. Un contact supprimé dans Dolibarr va dans la corbeille de Wailo (un administrateur peut l'en sortir). Un contact retiré de Wailo n'est jamais supprimé de Dolibarr : il devient inactif, avec une note privée, et redevient actif s'il revient dans Wailo. Les contacts inactifs ou privés de Dolibarr ne sont pas envoyés.
+WailoApiKeyHelp = À créer dans l'espace Entreprise de Wailo, écran « Accès API ». Une clé d'essai (wlo_test_) ouvre un bac à sable de contacts fictifs : à utiliser sur un Dolibarr d'essai seulement, jamais sur un Dolibarr qui contient de vrais contacts (les contacts fictifs y seraient ajoutés). La clé est enregistrée chiffrée et n'est plus affichée sur cette page (les administrateurs de Dolibarr peuvent encore la lire dans Configuration > Divers, constantes cachées) : laissez vide pour garder la clé actuelle.
+WailoSyncNote = Synchroniser la note publique
+WailoSyncNoteHelp = Désactivé par défaut. Activé, la note publique du contact Dolibarr et le texte « à propos » de Wailo sont recopiés dans les deux sens, en texte simple seulement (la mise en forme est perdue, %s caractères au plus), et deviennent visibles sur les téléphones de l'entreprise Wailo.
+WailoErrorHostNotAllowed = Seule une adresse Wailo est acceptée (https://...wailo.app) : la clé n'est jamais envoyée à un autre serveur.
+WailoErrorKeyRequiredForHost = L'adresse de l'API change de serveur : saisissez de nouveau la clé d'API (la clé enregistrée n'est jamais envoyée seule à un nouveau serveur).
+WailoErrorPassRunning = Une synchronisation est en cours : réessayez dans un instant (rien n'a été enregistré).
+WailoSyncResult_deferred = Wailo demande de ralentir : la synchronisation s'est arrêtée et reprend à la passe suivante.
+WailoWaiting_removals = %s contacts ont été retirés de Wailo d'un coup : rendre inactifs plus de 5 contacts de Dolibarr demande votre confirmation.
+WailoQuarantineTitle = Contacts en quarantaine
+WailoQuarantineHelp = Refusés par l'un des deux côtés : ils ne sont plus renvoyés tant qu'ils ne changent pas. Les autres contacts continuent d'être synchronisés.
+WailoRemovedNote = Retiré de Wailo le %s : contact rendu inactif par Wailo for Dolibarr.
+WailoBackNote = Revenu dans Wailo le %s : contact rendu actif par Wailo for Dolibarr.
+WailoBackNoteInactive = Revenu dans Wailo le %s : contact laissé inactif (il l'était déjà avant son retrait de Wailo).
+WailoLogRateLimitedDeferred = Wailo demande de ralentir (%s s) : passe arrêtée, elle reprend au prochain lancement
+WailoLogConfirmed = Confirmation utilisée : %s (%s contacts)
+WailoLogNeedsConfirm_first_push = %s contacts de Dolibarr à envoyer dans Wailo pour la première fois : en attente de confirmation
+WailoLogNeedsConfirm_too_many = %s opérations à envoyer dans Wailo (plus de 50) : en attente de confirmation
+WailoLogNeedsConfirm_deletes = %s contacts absents de Dolibarr d'un coup : aucune suppression en masse sans confirmation
+WailoLogNeedsConfirm_removals = %s contacts retirés de Wailo d'un coup : aucune désactivation en masse sans confirmation
+WailoLogOrphanLinks = %s contacts reliés ne sont plus dans Wailo : traités comme des retraits
+WailoLogPendingDeletion = Wailo %s : son contact Dolibarr %s a été supprimé, suppression en attente d'envoi (pas recréé)
+WailoLogW2DDeactivated = Wailo vers Dolibarr : Wailo %s retiré, contact Dolibarr %s rendu inactif (pas supprimé)
+WailoLogW2DReactivated = Wailo vers Dolibarr : Wailo %s revenu, contact Dolibarr %s rendu actif (pas de doublon)
+WailoLogW2DBackStillInactive = Wailo vers Dolibarr : Wailo %s revenu, contact Dolibarr %s laissé inactif (il l'était avant le retrait)
+WailoLogW2DBackNewId = Wailo vers Dolibarr : Wailo %s revenu sous un nouvel identifiant (ancien %s), même contact Dolibarr %s
+WailoLogAsleepReactivatedInDolibarr = Wailo %s, retiré de Wailo : son contact Dolibarr %s a été rendu actif dans Dolibarr, renvoyé dans Wailo comme nouveau contact
+WailoLogAsleepLinkForgotten = Wailo %s, retiré de Wailo : son contact Dolibarr %s a été supprimé, lien oublié (rien envoyé à Wailo)
+WailoLogW2DPaired = Import initial : contact Dolibarr %s apparié à Wailo %s, champs vides remplis : %s
+WailoLogQuarantine = Quarantaine %s : %s
+WailoLogD2WRefused = Dolibarr vers Wailo : refusé (%s)
